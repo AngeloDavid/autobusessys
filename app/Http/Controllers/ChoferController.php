@@ -39,7 +39,6 @@ class ChoferController extends Controller
      */
     public function store(Request $request)
     {
-    
         $this->validate($request,[ 'name'=>'required']);
         Chofer::create($request->all() );
         return redirect()->route('Chofer.index')->with('success','Registro creado satisfactoriamente');

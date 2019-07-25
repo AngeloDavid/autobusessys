@@ -38,8 +38,8 @@
         <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Autobus <span class="caret"></span></a>
           <ul class="dropdown-menu">
-            <li><a href="#">Crear</a></li>
-            <li><a href="#">Lista </a></li>
+            <li><a href="{{url('/Autobus/create')}}">Crear</a></li>
+            <li><a href="{{url('/Autobus')}}">Lista </a></li>
           </ul>
         </li>
         <li class="dropdown">
