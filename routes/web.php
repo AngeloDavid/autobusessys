@@ -14,3 +14,12 @@
 Route::get('/', function () {
     return view('welcome');
 });
+
+
+Route::resource('Autobus', 'AutobusController');
+
+Route::resource('Boleto', 'BoletoController');
+
+Route::resource('Chofer', 'ChoferController');
+
+Route::resource('Pasajero', 'PasajeroController');
