@@ -14,7 +14,8 @@ class ChoferController extends Controller
      */
     public function index()
     {
-        return view('Chofer.index');
+        $Chofers=Chofer::orderBy('id','DESC')->paginate(10);
+        return view('Chofer.index',compact('Chofers'));
     }
 
     /**
@@ -24,7 +25,10 @@ class ChoferController extends Controller
      */
     public function create()
     {
-        return view('Chofer.create');
+        $isnew = true;
+        $url= 'Chofer';
+        $chofer = new Chofer();
+        return view('Chofer.create', compact('isnew','url','chofer'));
     }
 
     /**
@@ -35,7 +39,10 @@ class ChoferController extends Controller
      */
     public function store(Request $request)
     {
-        //
+    
+        $this->validate($request,[ 'name'=>'required']);
+        Chofer::create($request->all() );
+        return redirect()->route('Chofer.index')->with('success','Registro creado satisfactoriamente');
     }
 
     /**
@@ -47,17 +54,23 @@ class ChoferController extends Controller
     public function show(Chofer $chofer)
     {
         //
+         $chofer=Chofer::find($id);
+        return  view('Chofer.show',compact('chofer'));
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Chofer  $chofer
+     *  @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(Chofer $chofer)
+    public function edit($id)
     {
         //
+          $chofer=Chofer::find($id);
+          $isnew = false;
+          $url= 'Chofer/'.$chofer->id;
+        return view('Chofer.create',compact('chofer','isnew','url'));
     }
 
     /**
@@ -67,19 +80,25 @@ class ChoferController extends Controller
      * @param  \App\Chofer  $chofer
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Chofer $chofer)
+    public function update(Request $request, $id)
     {
         //
+         $this->validate($request,[ 'name'=>'required']);
+ 
+        Chofer::find($id)->update($request->all());
+        return redirect()->route('Chofer.index')->with('success','Registro actualizado satisfactoriamente');
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Chofer  $chofer
+     *   @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Chofer $chofer)
+    public function destroy($id)
     {
         //
+                Chofer::find($id)->delete();
+        return redirect()->route('Chofer.index')->with('success','Registro eliminado satisfactoriamente');
     }
 }
