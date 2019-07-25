@@ -14,7 +14,7 @@ class ChoferController extends Controller
      */
     public function index()
     {
-        //
+        return view('Chofer.index');
     }
 
     /**
@@ -24,7 +24,7 @@ class ChoferController extends Controller
      */
     public function create()
     {
-        //
+        return view('Chofer.create');
     }
 
     /**

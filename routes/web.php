@@ -16,6 +16,7 @@ Route::get('/', function () {
 });
 
 
+
 Route::resource('Autobus', 'AutobusController');
 
 Route::resource('Boleto', 'BoletoController');
